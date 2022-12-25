@@ -61,7 +61,7 @@ NOTE: You don't interact w/ the Persistent Container directly.
 ```
 
 ## Miscellaneous Code Snippets
-### Showing an Alert
+### Show an Alert to CREATE a new Person
 ```swift
     // Create alert
     let alert = UIAlertController(title: "Add Person", message: "What is their name?", preferredStyle: .alert)
@@ -99,7 +99,7 @@ NOTE: You don't interact w/ the Persistent Container directly.
     self.present(alert, animated: true, completion: nil)
 ```
 
-### Add Swipe and Delete Action
+### Swipe and Delete Action for TableView
 ```swift
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
