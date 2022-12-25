@@ -1,12 +1,11 @@
+This is a basic Core Data app that demonstrates fetching, saving and deleting data from persistent storage.
 
 Starting App               |        Adding Data        |        Finished App
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>  |  <img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>  |  <img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>
+<img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/1.png" width="300"/>  |  <img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/2.png" width="300"/>  |  <img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/3.png" width="300"/>
 
 ## First Step - get a reference to the Managed Object Context
 NOTE: You don't interact w/ the Persistent Container directly.
-
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
 ```swift
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 ```
@@ -112,5 +111,3 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
         
     }
 ```
-
-<img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="225">
