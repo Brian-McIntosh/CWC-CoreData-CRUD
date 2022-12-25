@@ -21,6 +21,28 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
     self.context.delete(personToRemove)
 ```
 
+## Filter results with NSPredicate
+```swift
+    // filtering requires parameters on the request, so separate the request
+    let request = Person.fetchRequest() as NSFetchRequest<Person>
+
+    // set the filtering on the request
+    let predicate = NSPredicate(format: "name CONTAINS 'Tiger'") //%@ for dynamic data
+    request.predicate = predicate
+
+    self.items = try context.fetch(request)
+```
+
+## Sort results with NSSortDescriptor
+```swift
+    let request = Person.fetchRequest() as NSFetchRequest<Person>
+            
+    let sort = NSSortDescriptor(key: "name", ascending: true)
+    request.sortDescriptors = [sort]
+
+    self.items = try context.fetch(request)
+```
+
 ## Miscellaneous Code Snippets
 ### Showing an Alert
 ```swift
@@ -34,12 +56,12 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
         // Get the textfield for the alert
         let textfield = alert.textFields![0]
 
-        // TODO: Create a Person object
+        // Create a Person object
         // Person is a subclass of NSManagedObject which allows us to save to Core Data
         let newPerson = Person(context: self.context)
         newPerson.name = textfield.text
 
-        // TODO: Save the data
+        // Save the data
         // try! self.context.save() // error w/o try! should use do/catch
         do {
             try self.context.save()
@@ -48,7 +70,7 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
 
         }
 
-        // TODO: Re-fetch the data
+        // Re-fetch the data
         // this function handles the context, fetchRequest, and reloading of tableview on main thread
         self.fetchPeople()
     }
@@ -60,23 +82,23 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
     self.present(alert, animated: true, completion: nil)
 ```
 
-### Add Swipe Action
+### Add Swipe and Delete Action
 ```swift
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         // Create swipe action
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             
-            // TODO: Which person to remove
+            // Which person to remove?
             let personToRemove = self.items![indexPath.row]
             
-            // TODO: Remove the person
+            // Delete the person from the context
             self.context.delete(personToRemove)
             
-            // TODO: Save the data
+            // Save the data
             try! self.context.save() // DO/CATCH
             
-            // TODO: Re-fetch the data
+            // Re-fetch the data
             self.fetchPeople()
         }
         
