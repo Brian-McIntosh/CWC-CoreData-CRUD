@@ -4,7 +4,7 @@ Starting App               |        Adding Data        |        Finished App
 :-------------------------:|:-------------------------:|:-------------------------:
 <img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/1.png" width="300"/>  |  <img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/2.png" width="300"/>  |  <img src="https://github.com/Brian-McIntosh/CWC-CoreData-CRUD/blob/main/images/3.png" width="300"/>
 
-## First Step - get a reference to the Managed Object Context
+## First Step - Get a reference to the Managed Object Context
 NOTE: You don't interact w/ the Persistent Container directly.
 ```swift
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -12,12 +12,25 @@ NOTE: You don't interact w/ the Persistent Container directly.
 
 ## Fetch from Core Data
 ```swift
-    self.items = try context.fetch(Person.fetchRequest())
+    // fetch can throw an error
+    do {
+        self.items = try context.fetch(Person.fetchRequest())
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    catch {
+    }
 ```
 
 ## Save to Core Data
 ```swift
-    try self.context.save()
+    do {
+        try self.context.save()
+    }
+    catch {
+    }
 ```
 
 ## Delete from Core Data
