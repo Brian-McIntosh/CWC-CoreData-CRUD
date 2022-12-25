@@ -1,4 +1,9 @@
-## Core Data First Step - get a reference to the Managed Object Context
+
+Starting App               |        Adding Data        |        Finished App
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>  |  <img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>  |  <img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="250"/>
+
+## First Step - get a reference to the Managed Object Context
 NOTE: You don't interact w/ the Persistent Container directly.
 
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
@@ -108,4 +113,4 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code
     }
 ```
 
-
+<img src="https://github.com/Brian-McIntosh/GoalPostApp/blob/main/images/AppStructure.png" width="225">
