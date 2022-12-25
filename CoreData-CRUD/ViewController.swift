@@ -25,7 +25,9 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         
         // Get items from Core Data to display in our tableview
-        fetchPeople()
+        //fetchPeople()
+        //fetchPeopleWithFiltering()
+        fetchPeopleWithSorting()
     }
     
     func fetchPeople() {
@@ -43,10 +45,45 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        catch {
-            
-        }
+        catch {}
     }
+    
+    // MARK: - FILTERING
+    func fetchPeopleWithFiltering() {
+        do {
+            // filtering requires parameters on the request, so separate the request
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            
+            // set the filtering on the request
+            let predicate = NSPredicate(format: "name CONTAINS 'Tiger'") //%@ for dynamic data
+            request.predicate = predicate
+            
+            self.items = try context.fetch(request)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        catch {}
+    }
+    
+    // MARK: - SORTING
+    func fetchPeopleWithSorting() {
+        do {
+            let request = Person.fetchRequest() as NSFetchRequest<Person>
+            
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
+            
+            self.items = try context.fetch(request)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        catch {}
+    }
+    
     
     @IBAction func addTapped(_ sender: Any) {
         
@@ -63,10 +100,7 @@ class ViewController: UIViewController {
             // TODO: Create a Person object
             // Person is a subclass of NSManagedObject which allows us to save to Core Data
             let newPerson = Person(context: self.context)
-            
-                newPerson.name = textfield.text
-                newPerson.age = 20
-                newPerson.gender = "Male"
+            newPerson.name = textfield.text
             
             // TODO: Save the data
             // try! self.context.save() // error w/o try! should use do/catch
@@ -80,7 +114,6 @@ class ViewController: UIViewController {
             // TODO: Re-fetch the data
             // this function handles the context, fetchRequest, and reloading of tableview on main thread
             self.fetchPeople()
-            
         }
         
         // Add button
