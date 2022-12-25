@@ -1,4 +1,4 @@
-This is a basic Core Data app that demonstrates fetching, saving and deleting data from persistent storage.
+# This is a basic Core Data app that demonstrates fetching, saving and deleting data from persistent storage.
 
 Starting App               |        Adding Data        |        Finished App
 :-------------------------:|:-------------------------:|:-------------------------:
